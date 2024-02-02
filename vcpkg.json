@@ -1,0 +1,19 @@
+{
+  "name": "cpp-h264-realtime-encoding",
+  "version": "0.0.0",
+  "builtin-baseline": "53bef8994c541b6561884a8395ea35715ece75db",
+  "dependencies": [
+    {
+      "name": "gtest",
+      "version>=": "1.13.0"
+    },
+    {
+      "name": "opencv",
+      "version>=": "4.8.0"
+    },
+    {
+      "name": "openh264",
+      "version>=": "2021-03-16"
+    }
+  ]
+}
