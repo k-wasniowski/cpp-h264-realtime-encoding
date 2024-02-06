@@ -17,7 +17,11 @@ project(cpp_h264_realtime_encoding)
 set(CMAKE_CXX_STANDARD 20)
 
 find_package(OpenCV CONFIG REQUIRED)
-find_package(OpenH264 CONFIG REQUIRED)
+find_package(aom CONFIG REQUIRED)
+
+add_subdirectory(Modules)
+add_subdirectory(Video)
+add_subdirectory(App)
 
 add_executable(h264-realtime-encoding
     main.cpp
@@ -33,4 +37,21 @@ target_link_libraries(h264-realtime-encoding
     opencv_core
     opencv_flann
     opencv_videoio
+    opencv_imgcodecs
+    opencv_highgui
+)
+
+target_include_directories(h264-realtime-encoding
+        PRIVATE
+    ${CMAKE_BINARY_DIR}/vcpkg_installed/x64-windows/include
+)
+
+target_link_directories(h264-realtime-encoding
+        PRIVATE
+    ${CMAKE_BINARY_DIR}/vcpkg_installed/x64-windows/lib
+)
+
+target_link_libraries(h264-realtime-encoding
+        PRIVATE
+    openh264
 )

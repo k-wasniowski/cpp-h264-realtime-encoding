@@ -6,8 +6,6 @@ module;
 
 export module VideoFrame;
 
-
-
 template <typename T>
 class TSQueue {
 private:
@@ -39,7 +37,6 @@ public:
     // Pops an element off the queue
     T pop()
     {
-
         // acquire lock
         std::unique_lock<std::mutex> lock(m_mutex);
 
@@ -58,8 +55,18 @@ public:
 
 export namespace VideoFrame {
     struct Frame {
+        int strideY;
+        int strideU;
+        int strideV;
+        std::vector<uint8_t> dataY;
+        std::vector<uint8_t> dataU;
+        std::vector<uint8_t> dataV;
+    };
+
+    struct EncodedFrame {
         std::vector<uint8_t> data;
     };
 
     using VideoFramesQueue = TSQueue<Frame>;
+    using EncodedVideoFramesQueue = TSQueue<EncodedFrame>;
 }
